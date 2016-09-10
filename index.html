@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Calculadora</title>
+		<link rel="stylesheet" href="style.css">
+		<script type="text/javascript" src="script.js"></script>
+	</head>
+
+	<body>
+		<table class="tg">
+		  <tr>
+		    <td class="tg-yw4l">Prestamo:</td>
+		    <td class="tg-yw4l">
+		    	<select>
+		    		<option value = "-1" selected=""> -- Selecionar --</option>
+		    		<option value = "1">Ordinario</option>
+		    		<option value = "2">AutoMotriz</option>
+		    	</select>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td class="tg-yw4l">Plazo:</td>
+		    <td class="tg-yw4l">
+		    	<select id = "meses">
+		    		<option value = "-1" selected=""> -- Selecionar --</option>
+		    		<option value = "12">12 meses</option>
+		    		<option value = "24">24 meses</option>
+		    	</select>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td class="tg-yw4l">Monto:</td>
+		    <td class="tg-yw4l">
+		    	<input type="text" name="monto" id = "monto">
+		    	<p id = "total">mil pesos</p>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td class="tg-yw4l">Interes Mensual:</td>
+		    <td class="tg-yw4l"><span id = "interes">2</span>%</td>
+		  </tr>
+		  <tr>
+		    <td class="tg-yw4l">Interes Moratorio:</td>
+		    <td class="tg-yw4l"><span id = "interesMoratorio">3</span>%</td>
+		  </tr>
+		  <tr>
+		    <td class="tg-yw4l">Ahorro:</td>
+		    <td class="tg-yw4l"><span id = "ahorro">500</span> pesos</td>
+		  </tr>
+		</table>
+
+		<table class="tg">
+			<tr>
+				<th class="tg-031e">Pago</th>
+				<th class="tg-031e">Abono<br></th>
+				<th class="tg-yw4l">Saldo</th>
+				<th class="tg-yw4l">Interes</th>
+				<th class="tg-yw4l">Iva</th>
+				<th class="tg-yw4l">Mensualidad</th>
+				<th class="tg-yw4l">Mensualidad Moratoria</th>
+			</tr>
+			<tr>
+				<td class="tg-031e">1</td>
+				<td class="tg-031e">1</td>
+				<td class="tg-yw4l">1</td>
+				<td class="tg-yw4l">1</td>
+				<td class="tg-yw4l">1</td>
+				<td class="tg-yw4l">1</td>
+				<td class="tg-yw4l">1</td>
+			</tr>
+		</table>
+	</body>
+</html>
