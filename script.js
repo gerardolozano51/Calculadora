@@ -7,9 +7,11 @@ var obj = {};
 
 /** -- **/
 
+
 let start = function(){
 	//setValues();
 	calculate();
+	viewTable();
 };
 
 let setValues = function(){
@@ -19,13 +21,12 @@ let setValues = function(){
 	interesMoratorio = document.getElementById("interesMoratorio").innerHTML;
 };
 
-let objectStructure = function(value){
-}
-function round(value, decimals) {
-  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
-}
 
 let calculate = function(){
+	var sumaAbono = 0;
+	var sumaInteres = 0;
+	var sumaIva = 0;
+	var sumaMensualidad = 0;
 	var suma = 0;
 	for (var i = 0; i <= meses; i++) {
 		if (i == 0){
@@ -43,17 +44,62 @@ let calculate = function(){
 			var interesCalculate 	= ( ((obj[i - 1].saldo) * interes) / 100);
 			var ivaInteresCalculate = ((interesCalculate * iva) / 100);
 			obj[i] = {
-				pago		: i,
-		   		abono		: abono.toFixed(2),
-		   		saldo		: round(( (obj[i - 1].saldo) - abono ),2),
-		   		interes 	: interesCalculate.toFixed(2), 
-		   		iva			: ivaInteresCalculate.toFixed(2),
-		   		mensualidad : (abono.toFixed(2) + interesCalculate.toFixed(2) + ivaInteresCalculate.toFixed(2))
+				pago		: parseFloat(i),
+		   		abono		: parseFloat(abono),
+		   		saldo		: parseFloat(( (obj[i - 1].saldo) - abono )),
+		   		interes 	: parseFloat(interesCalculate), 
+		   		iva			: parseFloat(ivaInteresCalculate),
+		   		mensualidad : (parseFloat(abono) + parseFloat(interesCalculate) + parseFloat(ivaInteresCalculate))
 			}
 		}
-		suma = parseFloat(suma) + parseFloat(obj[i].mensualidad);
+		if (i == meses){
+			if(obj[i].mensualidad < 0){
+				obj[i].mensualidad = 0;
+				console.log("Hola");
+			}
+			for (var a = 1; a <= meses; a++) {
+				sumaAbono += obj[a].abono;
+				sumaInteres += obj[a].interes;
+				sumaIva += obj[a].iva;
+				sumaMensualidad += obj[a].mensualidad;
+
+			}
+			obj[i+1] = {
+				sumaAbono : sumaAbono.toFixed(2),
+				sumaInteres : sumaInteres.toFixed(2),
+				sumaIva : sumaIva.toFixed(2),
+				sumaMensualidad : sumaMensualidad.toFixed(2)
+
+			}
+		}
 	}
-	console.log(obj)
+}
+
+let viewTable = function(){
+	var table  = document.getElementById("ts")
+
+	for (var i = 0; i <= meses; i++) {
+		
+		table.innerHTML +=`<tr>
+			<td class="tg-031e">${i}</td>
+			<td class="tg-031e">${obj[i].abono.toFixed(2)}</td>
+			<td class="tg-yw4l">${obj[i].saldo.toFixed(2)}</td>
+			<td class="tg-yw4l">${obj[i].interes.toFixed(2)}</td>
+			<td class="tg-yw4l">${obj[i].iva.toFixed(2)}</td>
+			<td class="tg-yw4l">${obj[i].mensualidad.toFixed(2)}</td>
+		</tr>`;
+
+		if (i == meses) {
+			table.innerHTML += `<tr>
+				<td class="tg-031e"></td>
+				<td class="tg-031e">${obj[i+1].sumaAbono}</td>
+				<td class="tg-yw4l"></td>
+				<td class="tg-yw4l">${obj[i+1].sumaInteres}</td>
+				<td class="tg-yw4l">${obj[i+1].sumaIva}</td>
+				<td class="tg-yw4l">${obj[i+1].sumaMensualidad}</td>
+			</tr>`;
+		}
+	}
 }
 
 

@@ -25,3 +25,9 @@
 	border-top-width:1px;
 	border-bottom-width:1px;
 }
+.ts{
+	width: 100%;
+}
+.ts td{
+	text-align: center;
+}
