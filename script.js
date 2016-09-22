@@ -1,28 +1,110 @@
 /** Variables Globales **/
-var meses = 24;
-var monto = 30002;
-var interes = 2;
+
+
+var meses;
+var monto;
+var interes;
 const iva = 16;
 var obj = {};
+var nombrePrestamo = {};
+
 
 /** -- **/
 
-
 let start = function(){
-	//setValues();
-	calculate();
-	viewTable();
+	prestamos();
+	infoPrestamos();
 };
 
-let setValues = function(){
-	meses   		 = document.getElementById("meses").innerHTML;
-	monto   		 = document.getElementById("monto").innerHTML;
+let calculo = function(){
+	setValores();
+	console.log(meses +" + " + monto +" + "+interes)
+	calcular();
+	//mostrarTabla();
+}
+
+let setValores = function(){
+	monto   		 = document.getElementById("monto").value;
 	interes 		 = document.getElementById("interes").innerHTML;
-	interesMoratorio = document.getElementById("interesMoratorio").innerHTML;
 };
 
+let prestamos = function(){
+	nombrePrestamo[1] = {
+		id       : '1',
+		prestamo : 'Ordinario',
+		interes  : '2',
+		ahorro   : '500'
+	}
+	nombrePrestamo[2] = {
+		id       : '2',
+		prestamo : 'Extraordinario',
+		interes  : '3',
+		ahorro   : '1500'
+	}
+	nombrePrestamo[3] = {
+		id       : '3',
+		prestamo : 'Emergencia',
+		interes  : '4',
+		ahorro   : '4500'
+	}
+	nombrePrestamo[4] = {
+		id       : '4',
+		prestamo : 'Simple',
+		interes  : '5',
+		ahorro   : '6500'
+	}
+	nombrePrestamo[5] = {
+		id       : '5',
+		prestamo : 'CrediAuto',
+		interes  : '6',
+		ahorro   : '2500'
+	}
+}
 
-let calculate = function(){
+let infoPrestamos = function(){
+	var selectPrestamo  = document.getElementById("prestamos");
+	var tamano = 0;
+
+	selectPrestamo.innerHTML +=`
+		<option value = "-1" selected disabled> -- Selecionar --</option>
+	`;
+	for (var key in nombrePrestamo) {
+    	tamano ++;
+  	}
+  	for (var i = 1; i <= tamano; i++) {
+		
+		selectPrestamo.innerHTML +=`
+			<option value = "${nombrePrestamo[i].id}">${nombrePrestamo[i].prestamo}</option>
+		`;
+	}
+
+}
+
+let infoInteresAhorro = function(){
+	var selectPrestamo  = document.getElementById("prestamos");
+	var campoInteres  = document.getElementById("interes");
+	var campoAhorro  = document.getElementById("ahorro");
+
+	if(nombrePrestamo == 'undefined'){
+  	
+	}
+	else{
+		campoInteres.innerHTML =`
+			${nombrePrestamo[selectPrestamo.value].interes}
+		`;
+
+		campoAhorro.innerHTML =`
+			${nombrePrestamo[selectPrestamo.value].ahorro}
+		`;
+	}
+}
+
+let infoMeses = function(){
+	meses 	= document.getElementById("meses").value;
+}
+
+
+let calcular = function(){
 	var sumaAbono = 0;
 	var sumaInteres = 0;
 	var sumaIva = 0;
@@ -75,8 +157,9 @@ let calculate = function(){
 	}
 }
 
-let viewTable = function(){
+let mostrarTabla = function(){
 	var table  = document.getElementById("ts")
+	//table.innerHTML = "";
 
 	for (var i = 0; i <= meses; i++) {
 		
