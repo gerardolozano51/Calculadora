@@ -3,68 +3,63 @@
 	<head>
 		<title>Calculadora</title>
 		<link rel="stylesheet" href="style.css">
+		<script type="text/javascript" src="prestamos.js"></script>
 		<script type="text/javascript" src="script.js"></script>
 		<script type="text/javascript" src="scripts/NumeroALetras.js"></script>
 
 	</head>
 
 	<body>
-		<div id = "cuerpo">
-			<h1>Calculadora de Pr&eacute;stamo</h1>
-			<table class="tb-1">
-			  <tr>
-			    <td class="nombre">Prestamo:</td>
-			    <td class="valor">
-			    	<select id = "prestamos" onchange="infoInteresAhorro()"></select>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td class="nombre">Plazo:</td>
-			    <td class="valor">
-			    	<select id = "meses" onchange="infoMeses()">
-			    		<option value = "-1" selected=""> -- Selecionar --</option>
-			    		<option value = "12">12 meses</option>
-			    		<option value = "18">18 meses</option>
-			    		<option value = "24">24 meses</option>
-			    		<option value = "36">36 meses</option>
-			    		<option value = "48">48 meses</option>
-			    		<option value = "60">60 meses</option>
-			    		<option value = "96">96 meses</option>
-			    	</select>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td class="nombre">Monto:</td>
-			    <td class="valor">
-			    	<input type="text" maxlength="8" size="13" name="monto" id = "monto" onkeyup="MostrarValor()" onkeypress="var charCode = (event.which) ? event.which : event.keyCode; if (charCode > 31 && (charCode < 48 || charCode > 57)) {return false;} else return true;">
-			    	<br>
-			    	<span id = "total">Cero Pesos</span>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td class="nombre">Interes Mensual:</td>
-			    <td class="valor"><span id = "interes">0</span>%</td>
-			  </tr>
-			  <tr>
-			    <td class="nombre">Ahorro:</td>
-			    <td class="valor"><span id = "ahorro">0</span> pesos</td>
-			  </tr>
-			</table>
-			<div id = "boton">
-				<button align="center" onclick="calculo();">Calcular</button>
-			</div>
+		<div id = "body">
+			<div id = "cuerpo">
+				<h1>Calculadora de Pr&eacute;stamo</h1>
+				<table class="tb-1">
+					<tr>
+						<td class="nombre">Prestamo:</td>
+						<td class="valor">
+							<select id = "prestamos" onchange="infoInteresAhorro()"></select>
+						</td>
+					</tr>
+					<tr>
+						<td class="nombre">Plazo:</td>
+						<td class="valor">
+							<select id = "meses" onchange="infoMeses()">
+								<option value = "-1" selected disabled> -- Selecionar --</option>
+								<option value = "12">12 meses</option>
+								<option value = "18">18 meses</option>
+								<option value = "24">24 meses</option>
+								<option value = "36">36 meses</option>
+								<option value = "48">48 meses</option>
+								<option value = "60">60 meses</option>
+								<option value = "96">96 meses</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="nombre">Monto:</td>
+						<td class="valor">
+							<input type="text" maxlength="8" size="13" name="monto" id = "monto" onkeyup="MostrarValor()" onkeypress="var charCode = (event.which) ? event.which : event.keyCode; if (charCode > 31 && (charCode < 48 || charCode > 57)) {return false;} else return true;">
+							<br>
+							<span id = "total">Cero Pesos</span>
+						</td>
+					</tr>
+				  	<tr>
+				    	<td class="nombre">Interes Mensual:</td>
+				    	<td class="valor"><span id = "interes">0</span>%</td>
+				  	</tr>
+				  	<tr>
+				    	<td class="nombre">Ahorro:</td>
+				    	<td class="valor"><span id = "ahorro">0</span> pesos</td>
+				  	</tr>
+				</table>
+				<div id = "boton">
+					<button align="center" onclick="calculo();">Calcular</button>
+				</div>
 
+			</div>
+			<div class="tg-wrap" id = "tb-tabla">
+				<table class="tg ts tg-4l3f6" id = "ts"></table>
+			</div>
 		</div>
-<hr>
-		<table class="tg ts" id = "ts">
-			<tr>
-				<th class="tg-031e">Pago</th>
-				<th class="tg-031e">Abono<br></th>
-				<th class="tg-yw4l">Saldo</th>
-				<th class="tg-yw4l">Interes</th>
-				<th class="tg-yw4l">Iva</th>
-				<th class="tg-yw4l">Mensualidad</th>
-			</tr>
-		</table>
 	</body>
 </html>

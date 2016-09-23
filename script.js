@@ -4,64 +4,31 @@
 var meses;
 var monto;
 var interes;
-const iva = 16;
+var iva = 16;
 var obj = {};
 var nombrePrestamo = {};
 
 
 /** -- **/
 
-let start = function(){
+var start = function(){
+
 	prestamos();
 	infoPrestamos();
 };
 
-let calculo = function(){
+var calculo = function(){
 	setValores();
-	console.log(meses +" + " + monto +" + "+interes)
 	calcular();
-	//mostrarTabla();
+	mostrarTabla();
 }
 
-let setValores = function(){
-	monto   		 = document.getElementById("monto").value;
-	interes 		 = document.getElementById("interes").innerHTML;
+var setValores = function(){
+	monto   		 = parseFloat(document.getElementById("monto").value);
+	interes 		 = parseFloat(document.getElementById("interes").innerHTML);
 };
 
-let prestamos = function(){
-	nombrePrestamo[1] = {
-		id       : '1',
-		prestamo : 'Ordinario',
-		interes  : '2',
-		ahorro   : '500'
-	}
-	nombrePrestamo[2] = {
-		id       : '2',
-		prestamo : 'Extraordinario',
-		interes  : '3',
-		ahorro   : '1500'
-	}
-	nombrePrestamo[3] = {
-		id       : '3',
-		prestamo : 'Emergencia',
-		interes  : '4',
-		ahorro   : '4500'
-	}
-	nombrePrestamo[4] = {
-		id       : '4',
-		prestamo : 'Simple',
-		interes  : '5',
-		ahorro   : '6500'
-	}
-	nombrePrestamo[5] = {
-		id       : '5',
-		prestamo : 'CrediAuto',
-		interes  : '6',
-		ahorro   : '2500'
-	}
-}
-
-let infoPrestamos = function(){
+var infoPrestamos = function(){
 	var selectPrestamo  = document.getElementById("prestamos");
 	var tamano = 0;
 
@@ -80,7 +47,7 @@ let infoPrestamos = function(){
 
 }
 
-let infoInteresAhorro = function(){
+var infoInteresAhorro = function(){
 	var selectPrestamo  = document.getElementById("prestamos");
 	var campoInteres  = document.getElementById("interes");
 	var campoAhorro  = document.getElementById("ahorro");
@@ -99,12 +66,12 @@ let infoInteresAhorro = function(){
 	}
 }
 
-let infoMeses = function(){
+var infoMeses = function(){
 	meses 	= document.getElementById("meses").value;
 }
 
 
-let calcular = function(){
+var calcular = function(){
 	var sumaAbono = 0;
 	var sumaInteres = 0;
 	var sumaIva = 0;
@@ -137,7 +104,6 @@ let calcular = function(){
 		if (i == meses){
 			if(obj[i].mensualidad < 0){
 				obj[i].mensualidad = 0;
-				console.log("Hola");
 			}
 			for (var a = 1; a <= meses; a++) {
 				sumaAbono += obj[a].abono;
@@ -157,24 +123,45 @@ let calcular = function(){
 	}
 }
 
-let mostrarTabla = function(){
+var mostrarTabla = function(){
 	var table  = document.getElementById("ts")
-	//table.innerHTML = "";
-
+	table.innerHTML = "";
+	table.innerHTML +=`
+		<tr>
+			<th class="tg-031e tdverde">Pago</th>
+			<th class="tg-031e tdverde">Abono<br></th>
+			<th class="tg-yw4l tdverde">Saldo</th>
+			<th class="tg-yw4l tdverde">Interes</th>
+			<th class="tg-yw4l tdverde">Iva</th>
+			<th class="tg-yw4l tdverde">Mensualidad</th>
+		</tr>
+	`;
 	for (var i = 0; i <= meses; i++) {
-		
-		table.innerHTML +=`<tr>
-			<td class="tg-031e">${i}</td>
-			<td class="tg-031e">${obj[i].abono.toFixed(2)}</td>
-			<td class="tg-yw4l">${obj[i].saldo.toFixed(2)}</td>
-			<td class="tg-yw4l">${obj[i].interes.toFixed(2)}</td>
-			<td class="tg-yw4l">${obj[i].iva.toFixed(2)}</td>
-			<td class="tg-yw4l">${obj[i].mensualidad.toFixed(2)}</td>
-		</tr>`;
 
+		if ((i%2) == 0) {
+            table.innerHTML +=`<tr>
+				<td class="tg-031e">${i}</td>
+				<td class="tg-031e">${obj[i].abono.toFixed(2)}</td>
+				<td class="tg-yw4l">${obj[i].saldo.toFixed(2)}</td>
+				<td class="tg-yw4l">${obj[i].interes.toFixed(2)}</td>
+				<td class="tg-yw4l">${obj[i].iva.toFixed(2)}</td>
+				<td class="tg-yw4l">${obj[i].mensualidad.toFixed(2)}</td>
+			</tr>	`;
+        }
+        else{
+        	table.innerHTML +=`<tr>
+				<td class="tg-031e tdverde">${i}</td>
+				<td class="tg-031e tdverde">${obj[i].abono.toFixed(2)}</td>
+				<td class="tg-yw4l tdverde">${obj[i].saldo.toFixed(2)}</td>
+				<td class="tg-yw4l tdverde">${obj[i].interes.toFixed(2)}</td>
+				<td class="tg-yw4l tdverde">${obj[i].iva.toFixed(2)}</td>
+				<td class="tg-yw4l tdverde">${obj[i].mensualidad.toFixed(2)}</td>
+			</tr>	`;
+        }
+		
 		if (i == meses) {
 			table.innerHTML += `<tr>
-				<td class="tg-031e"></td>
+				<td class="tg-031e">Total</td>
 				<td class="tg-031e">${obj[i+1].sumaAbono}</td>
 				<td class="tg-yw4l"></td>
 				<td class="tg-yw4l">${obj[i+1].sumaInteres}</td>
