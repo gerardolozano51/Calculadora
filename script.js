@@ -21,7 +21,7 @@ var calculo = function(){
 	setValores();
 	calcular();
 	mostrarTabla();
-}
+};
 
 var setValores = function(){
 	monto   		 = parseFloat(document.getElementById("monto").value);
@@ -44,8 +44,7 @@ var infoPrestamos = function(){
 			<option value = "${nombrePrestamo[i].id}">${nombrePrestamo[i].prestamo}</option>
 		`;
 	}
-
-}
+};
 
 var infoInteresAhorro = function(){
 	var selectPrestamo  = document.getElementById("prestamos");
@@ -64,11 +63,11 @@ var infoInteresAhorro = function(){
 			${nombrePrestamo[selectPrestamo.value].ahorro}
 		`;
 	}
-}
+};
 
 var infoMeses = function(){
 	meses 	= document.getElementById("meses").value;
-}
+};
 
 
 var calcular = function(){
@@ -121,7 +120,7 @@ var calcular = function(){
 			}
 		}
 	}
-}
+};
 
 var mostrarTabla = function(){
 	var table  = document.getElementById("ts")
@@ -170,7 +169,7 @@ var mostrarTabla = function(){
 			</tr>`;
 		}
 	}
-}
+};
 
 
 window.onload = start;
